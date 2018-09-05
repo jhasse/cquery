@@ -23,7 +23,8 @@ for:
         - MSYSTEM: MINGW64
     build_script:
       ps: "C:\\msys64\\usr\\bin\\bash -lc @\"\n
-      cmake -G'MSYS Makefiles' -DCMAKE_INSTALL_PREFIX=install .\n
+      pacman -Sq --needed --noconfirm mingw-w64-x86_64-clang\n
+      cmake -G'MSYS Makefiles' -DCMAKE_INSTALL_PREFIX=install -DSYSTEM_CLANG=ON .\n
       make -j$(nproc) install 2>&1\n
       cp /mingw64/bin/libgcc_s_seh-1.dll install/bin\n
       cp /mingw64/bin/libstdc++-6.dll install/bin\n
